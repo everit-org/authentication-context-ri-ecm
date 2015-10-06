@@ -193,7 +193,7 @@
     <dependency>
       <groupId>org.everit.transaction</groupId>
       <artifactId>org.everit.transaction.propagator.jta.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     
     <!-- Jetty with Http Service -->
@@ -275,21 +275,6 @@
     <dependency>
       <groupId>org.everit.persistence</groupId>
       <artifactId>org.everit.persistence.querydsl.sqltemplates.ecm</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.component</artifactId>
-      <version>1.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.util.promise</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.util.function</artifactId>
       <version>1.0.0</version>
     </dependency>
     <dependency>
