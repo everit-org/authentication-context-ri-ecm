@@ -23,14 +23,14 @@ public final class AuthenticationContextConstants {
 
   /**
    * The property name of the OSGi filter expression defining which
-   * {@link org.everit.osgi.props.PropertyManager} should be used by
+   * {@link org.everit.props.PropertyManager} should be used by
    * {@link org.everit.authentication.context.ri.ecm.internal.AuthenticationContextComponent}.
    */
   public static final String ATTR_PROPERTY_MANAGER_TARGET = "propertyManager.target";
 
   /**
    * The property name of the OSGi filter expression defining which
-   * {@link org.everit.osgi.resource.ResourceService} should be used by
+   * {@link org.everit.resource.ResourceService} should be used by
    * {@link org.everit.authentication.context.ri.ecm.internal.AuthenticationContextComponent}.
    */
   public static final String ATTR_RESOURCE_SERVICE_TARGET = "resourceService.target";
