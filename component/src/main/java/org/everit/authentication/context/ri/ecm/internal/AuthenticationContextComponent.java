@@ -26,6 +26,7 @@ import org.everit.osgi.ecm.annotation.Activate;
 import org.everit.osgi.ecm.annotation.Component;
 import org.everit.osgi.ecm.annotation.ConfigurationPolicy;
 import org.everit.osgi.ecm.annotation.Deactivate;
+import org.everit.osgi.ecm.annotation.ManualService;
 import org.everit.osgi.ecm.annotation.ServiceRef;
 import org.everit.osgi.ecm.annotation.attribute.StringAttribute;
 import org.everit.osgi.ecm.annotation.attribute.StringAttributes;
@@ -51,10 +52,18 @@ import aQute.bnd.annotation.headers.ProvideCapability;
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
         defaultValue = AuthenticationContextConstants.DEFAULT_SERVICE_DESCRIPTION,
-        priority = 0, label = "Service Description",
+        priority = AuthenticationContextComponent.P01_SERVICE_DESCRIPTION,
+        label = "Service Description",
         description = "The description of this component configuration. It is used to easily "
             + "identify the service registered by this component.") })
+@ManualService({ AuthenticationContext.class, AuthenticationPropagator.class })
 public class AuthenticationContextComponent {
+
+  public static final int P01_SERVICE_DESCRIPTION = 1;
+
+  public static final int P02_PROPERTY_MANAGER = 2;
+
+  public static final int P03_RESOURCE_SERVICE = 3;
 
   /**
    * The {@link PropertyManager} used to load/store the value of the
@@ -96,14 +105,16 @@ public class AuthenticationContextComponent {
   }
 
   @ServiceRef(attributeId = AuthenticationContextConstants.ATTR_PROPERTY_MANAGER_TARGET,
-      defaultValue = "", attributePriority = 1, label = "Property Manager OSGi filter",
+      defaultValue = "", attributePriority = P02_PROPERTY_MANAGER,
+      label = "Property Manager OSGi filter",
       description = "OSGi Service filter expression for PropertyManager instance.")
   public void setPropertyManager(final PropertyManager propertyManager) {
     this.propertyManager = propertyManager;
   }
 
   @ServiceRef(attributeId = AuthenticationContextConstants.ATTR_RESOURCE_SERVICE_TARGET,
-      defaultValue = "", attributePriority = 2, label = "Resource Service OSGi filter",
+      defaultValue = "", attributePriority = P03_RESOURCE_SERVICE,
+      label = "Resource Service OSGi filter",
       description = "OSGi Service filter expression for ResourceService instance.")
   public void setResourceService(final ResourceService resourceService) {
     this.resourceService = resourceService;
