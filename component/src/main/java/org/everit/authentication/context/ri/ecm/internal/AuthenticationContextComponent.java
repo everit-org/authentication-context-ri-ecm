@@ -89,8 +89,10 @@ public class AuthenticationContextComponent {
     Dictionary<String, Object> serviceProperties =
         new Hashtable<>(componentContext.getProperties());
     serviceRegistration =
-        componentContext.registerService(new String[] { AuthenticationContext.class.getName(),
-            AuthenticationPropagator.class.getName() },
+        componentContext.registerService(
+            new String[] {
+                AuthenticationContext.class.getName(),
+                AuthenticationPropagator.class.getName() },
             authenticationContextImpl, serviceProperties);
   }
 

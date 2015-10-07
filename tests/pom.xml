@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.everit.authentication</groupId>
     <artifactId>org.everit.authentication.context.ri.ecm.parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <groupId>org.everit.authentication</groupId>
@@ -111,18 +111,18 @@
     <dependency>
       <groupId>org.everit.authentication</groupId>
       <artifactId>org.everit.authentication.context.ri.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.everit.props</groupId>
       <artifactId>org.everit.props.ri.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.everit.cache</groupId>
-      <artifactId>org.everit.cache.noop</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <artifactId>org.everit.cache.noop.ecm</artifactId>
+      <version>1.0.0</version>
     </dependency>
 
     <dependency>
@@ -131,7 +131,6 @@
       <version>1.0.0</version>
     </dependency>
     
-    <!-- Basic OSGi to tests -->
     <dependency>
       <groupId>org.everit.osgi.dev</groupId>
       <artifactId>org.everit.osgi.dev.testrunner.junit4</artifactId>
