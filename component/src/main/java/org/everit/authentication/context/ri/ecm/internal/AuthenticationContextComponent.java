@@ -27,43 +27,41 @@ import org.everit.osgi.ecm.annotation.Component;
 import org.everit.osgi.ecm.annotation.ConfigurationPolicy;
 import org.everit.osgi.ecm.annotation.Deactivate;
 import org.everit.osgi.ecm.annotation.ManualService;
+import org.everit.osgi.ecm.annotation.ManualServices;
 import org.everit.osgi.ecm.annotation.ServiceRef;
 import org.everit.osgi.ecm.annotation.attribute.StringAttribute;
 import org.everit.osgi.ecm.annotation.attribute.StringAttributes;
 import org.everit.osgi.ecm.component.ComponentContext;
-import org.everit.osgi.ecm.extender.ECMExtenderConstants;
+import org.everit.osgi.ecm.extender.ExtendComponent;
 import org.everit.props.PropertyManager;
 import org.everit.resource.ResourceService;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
-
 /**
  * The reference implementation of the {@link AuthenticationContext} and
  * {@link AuthenticationPropagator} interfaces.
  */
+@ExtendComponent
 @Component(componentId = AuthenticationContextConstants.SERVICE_FACTORYPID_AUTHENTICATION_CONTEXT,
     configurationPolicy = ConfigurationPolicy.FACTORY, label = "Everit Authentication Context RI",
     description = "Component for executing authenticated tasks and querying the actual owner "
         + "of the running task.")
-@ProvideCapability(ns = ECMExtenderConstants.CAPABILITY_NS_COMPONENT,
-    value = ECMExtenderConstants.CAPABILITY_ATTR_CLASS + "=${@class}")
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
         defaultValue = AuthenticationContextConstants.DEFAULT_SERVICE_DESCRIPTION,
-        priority = AuthenticationContextComponent.P01_SERVICE_DESCRIPTION,
+        priority = AuthenticationContextComponent.PRIORITY_SERVICE_DESCRIPTION,
         label = "Service Description",
         description = "The description of this component configuration. It is used to easily "
             + "identify the service registered by this component.") })
-@ManualService({ AuthenticationContext.class, AuthenticationPropagator.class })
+@ManualServices(@ManualService({ AuthenticationContext.class, AuthenticationPropagator.class }))
 public class AuthenticationContextComponent {
 
-  public static final int P01_SERVICE_DESCRIPTION = 1;
+  public static final int PRIORITY_SERVICE_DESCRIPTION = 1;
 
-  public static final int P02_PROPERTY_MANAGER = 2;
+  public static final int PRIORITY_PROPERTY_MANAGER = 2;
 
-  public static final int P03_RESOURCE_SERVICE = 3;
+  public static final int PRIORITY_RESOURCE_SERVICE = 3;
 
   /**
    * The {@link PropertyManager} used to load/store the value of the
@@ -107,7 +105,7 @@ public class AuthenticationContextComponent {
   }
 
   @ServiceRef(attributeId = AuthenticationContextConstants.ATTR_PROPERTY_MANAGER_TARGET,
-      defaultValue = "", attributePriority = P02_PROPERTY_MANAGER,
+      defaultValue = "", attributePriority = PRIORITY_PROPERTY_MANAGER,
       label = "Property Manager OSGi filter",
       description = "OSGi Service filter expression for PropertyManager instance.")
   public void setPropertyManager(final PropertyManager propertyManager) {
@@ -115,7 +113,7 @@ public class AuthenticationContextComponent {
   }
 
   @ServiceRef(attributeId = AuthenticationContextConstants.ATTR_RESOURCE_SERVICE_TARGET,
-      defaultValue = "", attributePriority = P03_RESOURCE_SERVICE,
+      defaultValue = "", attributePriority = PRIORITY_RESOURCE_SERVICE,
       label = "Resource Service OSGi filter",
       description = "OSGi Service filter expression for ResourceService instance.")
   public void setResourceService(final ResourceService resourceService) {
